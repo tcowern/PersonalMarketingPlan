@@ -1,0 +1,14 @@
+.bucket {
+  font: large;
+}
+
+.task {
+  padding-left: 10px;
+  border-bottom: lime;
+  border-block-end-width: thick;
+}
+
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+}
