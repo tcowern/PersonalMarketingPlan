@@ -7,6 +7,7 @@ homeController.$inject = ['basicsFactory', "$http"];
 function homeController(basicsFactory, $http) {
     var home = this;
     home.newPrefFunction = {};
+    home.newCertifications = {};
     home.newbasics = {};
     home.basics = {};
     home.basicsList = [];
@@ -18,6 +19,7 @@ function homeController(basicsFactory, $http) {
         complete: false
     };
     home.user = "";
+    home.basicInfo = {}; //latest addition
 
 
 
@@ -44,8 +46,9 @@ function homeController(basicsFactory, $http) {
         console.log("addPrefFunction", home.newPrefFunction);
         console.log("addPrefFunction user", home.user);
         home.newPrefFunction.userid = home.user;
-
-        console.log("addPrefFunction", home.newPrefFunction);
+        
+        console.log("addPrefFunction basicInfo", home.newPrefFunction);
+        
         basicsFactory.addPrefFunction(home.newPrefFunction)
             .then(function (returnData) {
                 home.newPrefFunction = {
@@ -60,7 +63,28 @@ function homeController(basicsFactory, $http) {
 
     }
 
+    home.addCertifications = function () {
+        console.log("addCertifications", home.newCertifications);
+        console.log("addCertifications user", home.user);
+        home.newCertifications.userid = home.user;
+//        return;
+        console.log("addCertifications basicInfo", home.newCertifications);
+        
+        basicsFactory.addCertifications(home.newCertifications)
+            .then(function (returnData) {
+                home.newCertifications = {
+                    userid: home.user
+                }
+                console.log("addCertifications response from server: ", returnData);
+                home.getBasics(); // get many
 
+            }).catch(function (err) {
+                console.log("addCertifications error: ", err);
+            });
+
+    }
+    
+    
     home.createBasics = function () {
         basicsFactory.createBasics(home.newBasics)
             .then(function (returnData) {
@@ -147,22 +171,7 @@ function homeController(basicsFactory, $http) {
             });
     }
 
-    home.addCertifications = function () {
-        console.log("Hit addCertifications", home.BasicsItem);
-        basicsFactory.addBasics(home.BasicsItem)
-            .then(function (returnData) {
-                home.BasicsItem = {
-                    userid: home.user
-                }
-                console.log("addCertifications response from server: ", returnData);
-                home.getCertifications(); // get many
-
-            }).catch(function (err) {
-                console.log("addCertifications error: ", err);
-            });
-    }
-
-
+   
     angular.module('Basics')
         .run(function (editableOptions) {
             editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

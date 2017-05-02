@@ -31,6 +31,11 @@ function basicsFactory($http) {
             return $http.post('/api/basics', newPrefFunction);
         },
 
+        addCertifications: function (newCertifications) {
+            console.log("Factory newCertifications: ", newCertifications);
+            return $http.post('/api/basics', newCertifications);
+        },
+
         addBasics: function (basicsItem) {
             return $http.post('/api/basics', basicsItem);
         },
@@ -40,21 +45,21 @@ function basicsFactory($http) {
             return $http.post('/register', userData);
         },
 
-//        addTask: function (taskItem) {
-//            return $http.post('/api/task', taskItem);
-//        },
-//
-//        getTask: function (basicsid) {
-//            console.log("Hit the getTask in factory", basicsid);
-//            // basicsid = basicsid ? '/' + basicsid : ''
-//            return $http.get('/api/task/' + basicsid)
-//        },
-//
-//        getAllTasks: function () {
-//            // console.log("Hit the getAllTasks in factory");
-//            // basicsid = basicsid ? '/' + basicsid : ''
-//            return $http.get('/api/task/')
-//        },
+        //        addTask: function (taskItem) {
+        //            return $http.post('/api/task', taskItem);
+        //        },
+        //
+        //        getTask: function (basicsid) {
+        //            console.log("Hit the getTask in factory", basicsid);
+        //            // basicsid = basicsid ? '/' + basicsid : ''
+        //            return $http.get('/api/task/' + basicsid)
+        //        },
+        //
+        //        getAllTasks: function () {
+        //            // console.log("Hit the getAllTasks in factory");
+        //            // basicsid = basicsid ? '/' + basicsid : ''
+        //            return $http.get('/api/task/')
+        //        },
 
         dateBasics: function (dateItem, dateDate) {
             // dateItem = dateItem ? '/' + dateItem : ''
@@ -74,14 +79,14 @@ function basicsFactory($http) {
             return $http.put('/api/basicscomp/', data);
         },
 
-//        compTask: function (taskId, taskComp) {
-//            // dateItem = dateItem ? '/' + dateItem : ''
-//            var data = {
-//                taskid: taskId,
-//                taskcomp: taskComp
-//            };
-//            return $http.put('/api/taskcomp/', data);
-//        },
+        //        compTask: function (taskId, taskComp) {
+        //            // dateItem = dateItem ? '/' + dateItem : ''
+        //            var data = {
+        //                taskid: taskId,
+        //                taskcomp: taskComp
+        //            };
+        //            return $http.put('/api/taskcomp/', data);
+        //        },
 
         groupBasics: function (basicsId, topGroup) {
             // dateItem = dateItem ? '/' + dateItem : ''

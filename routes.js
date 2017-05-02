@@ -66,6 +66,7 @@ module.exports = (app) => {
 //        Basics.addPrefFunction;
 //    });
     app.post('/api/basics', Basics.addPrefFunction);
+    app.post('/api/basics', Basics.addCertifications);
     app.get('/api/basics', Basics.get);
     app.get('/api/basics/:id', Basics.get);
     app.post('/api/basics', Basics.addBasics);
