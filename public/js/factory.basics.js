@@ -20,16 +20,21 @@ function basicsFactory($http) {
             return $http.get('/api/basics' + basicsID)
         },
 
-        getCertifications: function (basicsID) {
-            // console.log("Hit the getBasics in factory");
-            basicsID = basicsID ? '/' + basicsID : ''
-            return $http.get('/api/basics' + basicsID)
-        },
-
-        addPrefFunction: function (newPrefFunction) {
-            console.log("Factory newPrefFunction: ", newPrefFunction);
-            return $http.post('/api/basics', newPrefFunction);
-        },
+        addBasicInfo: function (basicInfo) {
+             console.log("factory.addBasicInfo: ", basicInfo);
+            return $http.post('/api/basics', basicInfo)
+        },    
+        
+//        getCertifications: function (basicsID) {
+//            // console.log("Hit the getBasics in factory");
+//            basicsID = basicsID ? '/' + basicsID : ''
+//            return $http.get('/api/basics' + basicsID)
+//        },
+//
+//        addPrefFunction: function (newPrefFunction) {
+//            console.log("Factory newPrefFunction: ", newPrefFunction);
+//            return $http.post('/api/basics', newPrefFunction);
+//        },
 
         addCertifications: function (newCertifications) {
             console.log("Factory newCertifications: ", newCertifications);

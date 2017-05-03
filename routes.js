@@ -66,8 +66,8 @@ module.exports = (app) => {
 //        console.log('Hit routes for addPrefFunction');
 //        Basics.addPrefFunction;
 //    });
-    app.post('/api/basics', Basics.addPrefFunction);
-    app.post('/api/basics', Basics.addCertifications);
+//    app.post('/api/basics', Basics.addPrefFunction);
+    app.post('/api/basics', Basics.addBasicInfo);
     app.get('/api/basics', Basics.get);
     app.get('/api/basics/:id', Basics.get);
     app.post('/api/basics', Basics.addBasics);

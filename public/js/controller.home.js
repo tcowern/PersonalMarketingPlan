@@ -6,7 +6,10 @@ homeController.$inject = ['basicsFactory', "$http"];
 
 function homeController(basicsFactory, $http) {
     var home = this;
-    home.newPrefFunction = {};
+    home.infoType = '';         //keep
+    home.infoStr = '';          //keep
+    home.newBasicInfo = {};     //keep
+    home.newPrefFunction = {};  
     home.newCertifications = {};
     home.newbasics = {};
     home.basics = {};
@@ -40,49 +43,25 @@ function homeController(basicsFactory, $http) {
             //            console.log("getUserID error :", err);
         });
 
-
-
-    home.addPrefFunction = function () {
-        console.log("addPrefFunction", home.newPrefFunction);
-        console.log("addPrefFunction user", home.user);
-        home.newPrefFunction.userid = home.user;
+    home.addBasicInfo = function(infoType, infoStr) {
         
-        console.log("addPrefFunction basicInfo", home.newPrefFunction);
+        home.newBasicInfo.infoType = infoType;
+        home.newBasicInfo.infoStr = infoStr;
+        home.newBasicInfo.userid = home.user;
         
-        basicsFactory.addPrefFunction(home.newPrefFunction)
+        console.log('newBasicInfo: ',home.newBasicInfo);
+        
+        basicsFactory.addBasicInfo(home.newBasicInfo) //need to create basicsFactory
             .then(function (returnData) {
-                home.newPrefFunction = {
-                    userid: home.user
-                }
-                console.log("addPrefFunction response from server: ", returnData);
-                home.getBasics(); // get many
-
-            }).catch(function (err) {
-                console.log("addPrefFunction error: ", err);
+            console.log("addBasicInfo response from server: ", returnData);
+            
+        }).catch(function (err) {
+                console.log("addBasicInfo error: ", err);
             });
-
+        home.getBasics();
     }
 
-    home.addCertifications = function () {
-        console.log("addCertifications", home.newCertifications);
-        console.log("addCertifications user", home.user);
-        home.newCertifications.userid = home.user;
-//        return;
-        console.log("addCertifications basicInfo", home.newCertifications);
-        
-        basicsFactory.addCertifications(home.newCertifications)
-            .then(function (returnData) {
-                home.newCertifications = {
-                    userid: home.user
-                }
-                console.log("addCertifications response from server: ", returnData);
-                home.getBasics(); // get many
-
-            }).catch(function (err) {
-                console.log("addCertifications error: ", err);
-            });
-
-    }
+    
     
     
     home.createBasics = function () {
@@ -120,7 +99,7 @@ function homeController(basicsFactory, $http) {
                     // if array (has length), store in basicsList
 
                     home.basicsList = returnData.data;
-                    //                    console.log("basicsList: ", returnData.data);
+                                        console.log("basicsList: ", returnData.data);
                     //                    console.log("Is this an array? ", Array.isArray(returnData.data))
                     //                    console.log(home.basicsList[0].preferred);
                     //                    home.dateCalc();
