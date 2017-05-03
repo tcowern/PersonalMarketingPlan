@@ -17,11 +17,12 @@ module.exports = (app) => {
 
     // app.get('/', Auth.middlewares.session);
 
-    app.get('/certifications', (req, res) => {
-        res.sendFile('certifications.html', {
-            root: './public/html'
-        })
-    });
+//    app.get('/certifications', (req, res) => {
+//        console.log('Hit get certifications in routes');
+//        res.sendFile('certifications.html', {
+//            root: './public/html'
+//        })
+//    });
 
     app.get('/datebasics', (req, res) => {
         res.sendFile('datebasics.html', {

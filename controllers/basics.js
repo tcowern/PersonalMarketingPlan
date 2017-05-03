@@ -44,12 +44,12 @@ function addCertifications(req, res) {
     console.log('addCert Req.body:', req.body);
 
     if (!req.body.userid) {
-        res.send("Error userid is incorrect");
-        return;
+        res.send("addCert Error userid is incorrect");
+//        return;
     }
 
     Basics.update({
-            userid: req.body.useridCertifications
+            userid: req.body.userid
         }, {
             $addToSet: {
                 certifications: {
