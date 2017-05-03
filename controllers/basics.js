@@ -1,4 +1,5 @@
 var Basics = require('../models/basicsModel');
+var Competencies = require('../models/competenciesModel');
 var mongoose = require('mongoose');
 
 function addBasicInfo(req, res) {
@@ -83,7 +84,7 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            case 'employment':
+        case 'employment':
             console.log('you hit employment');
             Basics.update({
                     userid: req.body.userid
@@ -109,7 +110,7 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            case 'statement':
+        case 'statement':
             console.log('you hit statement');
             Basics.update({
                     userid: req.body.userid
@@ -135,7 +136,7 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            case 'objective':
+        case 'objective':
             console.log('you hit objective');
             Basics.update({
                     userid: req.body.userid
@@ -161,7 +162,7 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            case 'targets':
+        case 'targets':
             console.log('you hit targets');
             Basics.update({
                     userid: req.body.userid
@@ -187,7 +188,7 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            case 'important':
+        case 'important':
             console.log('you hit important');
             Basics.update({
                     userid: req.body.userid
@@ -213,14 +214,23 @@ function addBasicInfo(req, res) {
                     }
                 });
             break;
-            
+
     }
 
 }
 
 function addCompetencies(req, res) {
-    console.log('Hit addCompentencies');
+    console.log('Hit addCompetencies');
     console.log('compentencies req.body', req.body);
+    var newComp = new Competencies(req.body);
+    newComp.save((err, doc)=>{
+        if(err){
+            return res.send(err);
+        }
+            res.send(doc);
+            // res.redirect('/index');
+            console.log('addComp doc', doc);
+    });
 }
 
 function get(req, res) {

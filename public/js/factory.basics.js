@@ -10,7 +10,14 @@ function basicsFactory($http) {
         getBasics: function (basicsID) {
             // console.log("Hit the getBasics in factory");
             basicsID = basicsID ? '/' + basicsID : ''
+            console.log('basicsID in the factory: ' + basicsID);
             return $http.get('/api/basics' + basicsID)
+        },
+        
+        getCompetencies: function (basicsID) {
+            // console.log("Hit the getBasics in factory");
+            basicsID = basicsID ? '/' + basicsID : ''
+            return $http.get('/api/competencies/' + basicsID)
         },
 
         addBasicInfo: function (basicInfo) {
@@ -20,7 +27,7 @@ function basicsFactory($http) {
 
         addCompetencies: function (Competencies) {
             console.log("factory.Competencies: ", Competencies);
-            return $http.post('/api/basics', Competencies)
+            return $http.post('/api/basics/addCompetencies', Competencies)
         },
 
         addCertifications: function (newCertifications) {

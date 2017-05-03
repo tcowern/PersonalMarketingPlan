@@ -1,4 +1,5 @@
 var Basics = require('./controllers/basics'),
+    Competencies = require('./controllers/competencies'),
     Auth = require('./controllers/auth'),
     Reset = require('./controllers/reset'),
     express = require('express');
@@ -32,6 +33,8 @@ module.exports = (app) => {
     });
 
     app.all('/api*', Auth.middlewares.session);
+    
+    app.post('/api/basics/addCompetencies', Basics.addCompetencies);
 
     app.get('/logout', Auth.logout);
     app.post('/login', Auth.login);
@@ -44,7 +47,8 @@ module.exports = (app) => {
 
     app.post('/api/basics', Basics.addBasicInfo);
     app.get('/api/basics', Basics.get);
+    app.get('/api/competencies', Competencies.get);
     
-    app.post('/api/basics', Basics.addCompetencies);
+    
 
 }

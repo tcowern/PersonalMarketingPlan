@@ -10,8 +10,7 @@ function homeController(basicsFactory, $http) {
     home.infoStr = ''; //keep
     home.newBasicInfo = {}; //keep
     home.newCompetencies = {}; //keep
-
-    home.basics = {};
+    home.competenciesList = []; //keep   
     home.basicsList = [];
     home.addbasics = {};
     home.BasicsItem = {};
@@ -26,6 +25,7 @@ function homeController(basicsFactory, $http) {
         .then(function (res) {
             console.log("getUserID api :", res);
             home.getBasics(res.data); // get one
+            home.getCompetencies(res.data); // get one
             //  home.BasicsItem = {};
             home.user = res.data;
             console.log("Loser: ", home.user);
@@ -58,20 +58,20 @@ function homeController(basicsFactory, $http) {
 
     home.addCompetencies = function (infoType, infoStr) {
 
-        home.newCompetencies.infoType = infoType;
-        home.newCompetencies.infoStr = infoStr;
+        //        home.newCompetencies.infoType = infoType;
+        home.newCompetencies.competencies = infoStr;
         home.newCompetencies.userid = home.user;
 
         console.log('home.newCompetencies: ', home.newCompetencies);
 
-        basicsFactory.addCompentencies(home.newCompetencies) //need to create basicsFactory
+        basicsFactory.addCompetencies(home.newCompetencies)
             .then(function (returnData) {
                 console.log("addCompetencies response from server: ", returnData);
 
             }).catch(function (err) {
                 console.log("addCompetencies error: ", err);
             });
-        home.getBasics();
+        home.getCompetencies();
     }
 
     home.createUser = function () {
@@ -95,11 +95,30 @@ function homeController(basicsFactory, $http) {
                 if (returnData.data !== undefined) {
 
                     home.basicsList = returnData.data;
-                    console.log("basicsList: ", returnData.data);
+                    console.log("basicsList: ", home.basicsList);
 
                 } else {
-                    
+
                     home.basicsList = [];
+                }
+            });
+
+    }
+
+    home.getCompetencies = function () {
+        console.log("Hit the getCompetencies function");
+        basicsFactory.getCompetencies()
+            .then(function (returnData) {
+
+                if (returnData.data !== undefined) {
+
+                    home.competenciesList = returnData.data;
+                    console.log("home.competenciesList: ", returnData.data);
+
+                } else {
+
+                    console.log('getCompetencies else', returnData.data);
+                    home.competenciesList = [];
                 }
             });
 
