@@ -11,7 +11,7 @@ function addBasicInfo(req, res) {
                 }, {
                     $addToSet: {
                         preferred: {
-                            $each: [req.body.infoType]
+                            $each: [req.body.infoStr]
                         }
                     }
 
@@ -218,60 +218,9 @@ function addBasicInfo(req, res) {
 
 }
 
-
-
-function put(req, res) {
-    console.log("req.body", req.body);
-    Basics.findByIdAndUpdate(req.body.basicsid, {
-        basicsdate: req.body.basicsdate
-    }, {
-        new: true
-    }, (err, document) => {
-        // res.send(err || documents)
-        if (err) {
-            res.send(err);
-        } else {
-            console.log("DOCUMENT from PUT", document);
-            res.send(document);
-        }
-    });
-
-}
-
-function basicsComp(req, res) {
-    console.log("basicscomp req.body", req.body);
-    Basics.findByIdAndUpdate(req.body.basicsid, {
-        basicscomp: req.body.basicscomp
-    }, {
-        new: true
-    }, (err, document) => {
-        // res.send(err || documents)
-        if (err) {
-            res.send(err);
-        } else {
-            console.log("DOCUMENT from basicscomp", document);
-            res.send(document);
-        }
-    });
-
-}
-
-function basicsGroup(req, res) {
-    console.log("basicsgroup req.body", req.body);
-    Basics.findByIdAndUpdate(req.body.basicsid, {
-        topgroup: req.body.topgroup
-    }, {
-        new: true
-    }, (err, document) => {
-        // res.send(err || documents)
-        if (err) {
-            res.send(err);
-        } else {
-            console.log("DOCUMENT from basicsgroup", document);
-            res.send(document);
-        }
-    });
-
+function addCompetencies(req, res) {
+    console.log('Hit addCompentencies');
+    console.log('compentencies req.body', req.body);
 }
 
 function get(req, res) {
@@ -308,51 +257,14 @@ function get(req, res) {
     }
 }
 
-function addBasics(req, res) {
-
-    // console.log("addBasics", req.body);
-    var user = req.session.userId;
-    console.log("user: ", user);
-    var bvar = req.body;
-    bvar.userid = user;
-
-
-    console.log("Edit Input haha: ", bvar);
-    var newBasics = new Basics(req.body);
-    console.log("newBasics: ", newBasics);
-    newBasics.save((err, doc) => {
-        if (err) {
-            return res.send(err);
-        }
-        res.send(doc);
-        // res.redirect('/index');
-        console.log(doc);
-    });
-
-}
-
-
 function getUserID(req, res) {
     console.log("req sess: ", req.session);
     return res.send(req.session.userId);
 }
 
-
-
 module.exports = {
-    put: put,
     get: get,
     addBasicInfo: addBasicInfo,
-    //    addPrefFunction: addPrefFunction,
-    addBasics: addBasics,
-    //    addCertifications: addCertifications,
+    addCompetencies: addCompetencies,
     getUserID: getUserID,
-    basicsComp: basicsComp,
-    basicsGroup: basicsGroup
 }
-
-// module.exports = {
-//     create : (req, res) =>{
-
-//     },
-// }

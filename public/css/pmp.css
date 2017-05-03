@@ -8,3 +8,11 @@ body {
 .list {
     list-style: none;
 }
+
+input {
+    width: 50%;
+}
+
+input[type='submit'] {
+    width: 10%;
+}

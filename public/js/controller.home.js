@@ -6,15 +6,13 @@ homeController.$inject = ['basicsFactory', "$http"];
 
 function homeController(basicsFactory, $http) {
     var home = this;
-    home.infoType = '';         //keep
-    home.infoStr = '';          //keep
-    home.newBasicInfo = {};     //keep
-    home.newPrefFunction = {};  
-    home.newCertifications = {};
-    home.newbasics = {};
+    home.infoType = ''; //keep
+    home.infoStr = ''; //keep
+    home.newBasicInfo = {}; //keep
+    home.newCompetencies = {}; //keep
+
     home.basics = {};
     home.basicsList = [];
-    home.certificationsList = [];
     home.addbasics = {};
     home.BasicsItem = {};
     home.greeting = 'Welcome to the basics list!';
@@ -23,9 +21,6 @@ function homeController(basicsFactory, $http) {
     };
     home.user = "";
     home.basicInfo = {}; //latest addition
-
-
-
 
     $http.get('/api/userID')
         .then(function (res) {
@@ -43,38 +38,40 @@ function homeController(basicsFactory, $http) {
             //            console.log("getUserID error :", err);
         });
 
-    home.addBasicInfo = function(infoType, infoStr) {
-        
+    home.addBasicInfo = function (infoType, infoStr) {
+
         home.newBasicInfo.infoType = infoType;
         home.newBasicInfo.infoStr = infoStr;
         home.newBasicInfo.userid = home.user;
-        
-        console.log('newBasicInfo: ',home.newBasicInfo);
-        
+
+        console.log('newBasicInfo: ', home.newBasicInfo);
+
         basicsFactory.addBasicInfo(home.newBasicInfo) //need to create basicsFactory
             .then(function (returnData) {
-            console.log("addBasicInfo response from server: ", returnData);
-            
-        }).catch(function (err) {
+                console.log("addBasicInfo response from server: ", returnData);
+
+            }).catch(function (err) {
                 console.log("addBasicInfo error: ", err);
             });
         home.getBasics();
     }
 
-    
-    
-    
-    home.createBasics = function () {
-        basicsFactory.createBasics(home.newBasics)
-            .then(function (returnData) {
-                console.log('Response from server : ', returnData)
-                home.newBasics = {}; // reset the form
-                home.getBasics();
+    home.addCompetencies = function (infoType, infoStr) {
 
-                window.location.href = "/";
+        home.newCompetencies.infoType = infoType;
+        home.newCompetencies.infoStr = infoStr;
+        home.newCompetencies.userid = home.user;
+
+        console.log('home.newCompetencies: ', home.newCompetencies);
+
+        basicsFactory.addCompentencies(home.newCompetencies) //need to create basicsFactory
+            .then(function (returnData) {
+                console.log("addCompetencies response from server: ", returnData);
+
             }).catch(function (err) {
-                console.log("create basics error", err);
+                console.log("addCompetencies error: ", err);
             });
+        home.getBasics();
     }
 
     home.createUser = function () {
@@ -91,66 +88,24 @@ function homeController(basicsFactory, $http) {
     }
 
     home.getBasics = function () {
-         console.log("Hit the GET function");
+        console.log("Hit the GET function");
         basicsFactory.getBasics()
             .then(function (returnData) {
-                //                 console.log("basics ",returnData.data);
+
                 if (returnData.data !== undefined) {
-                    // if array (has length), store in basicsList
 
                     home.basicsList = returnData.data;
-                                        console.log("basicsList: ", returnData.data);
-                    //                    console.log("Is this an array? ", Array.isArray(returnData.data))
-                    //                    console.log(home.basicsList[0].preferred);
-                    //                    home.dateCalc();
+                    console.log("basicsList: ", returnData.data);
 
-                    // return home.basicsList;
                 } else {
-                    // if not, store in basics
+                    
                     home.basicsList = [];
                 }
             });
 
     }
 
-    home.getCertifications = function () {
-        console.log("Hit the GET Certifications function");
-        basicsFactory.getCertifications()
-            .then(function (returnData) {
-                console.log("certifications ", returnData.data);
-                if (returnData.data !== undefined) {
-                    // if array (has length), store in basicsList
 
-                    home.certificationsList = returnData.data;
-
-                    //                    home.dateCalc();
-
-                    // return home.basicsList;
-                } else {
-                    // if not, store in basics
-                    home.certificationsList = [];
-                }
-            });
-
-    }
-
-
-    home.addBasics = function () {
-        console.log("Hit addBasics", home.BasicsItem);
-        basicsFactory.addBasics(home.BasicsItem)
-            .then(function (returnData) {
-                home.BasicsItem = {
-                    userid: home.user
-                }
-                console.log("addBasics response from server: ", returnData);
-                home.getBasics(); // get many
-
-            }).catch(function (err) {
-                console.log("addBasics error: ", err);
-            });
-    }
-
-   
     angular.module('Basics')
         .run(function (editableOptions) {
             editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

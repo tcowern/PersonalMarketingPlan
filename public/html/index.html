@@ -40,8 +40,8 @@
     <br>
     <div>
         <h1>We'll start by adding your preferred functions one at a time. What type of position do you want.</h1>
-        <form ng-submit="home.addBasicInfo('preferred', home.newBasicInfo.preferred)">
-            <input class="form-control addbasics" ng-model="home.basicsList.preferred" placeholder="Add Your Preferred Function Here!">
+        <form ng-submit="home.addBasicInfo('preferred', home.basicsList.preferred)">
+            <input type='text' ng-model="home.basicsList.preferred" placeholder="Add Your Preferred Function Here!">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
@@ -59,16 +59,16 @@
     <br>
     <div>
         <h1>You can add your certifications below</h1>
-        <form ng-submit="home.addBasicInfo('certifications', home.newBasicInfo.certifications)">
-            <input class="form-control addbasics" ng-model="home.newBasicInfohome.basicsList.certifications" placeholder="Add certifications here">
+        <form ng-submit="home.addBasicInfo('certifications', home.basicsList.certifications)">
+            <input type='text' ng-model="home.basicsList.certifications" placeholder="Add certifications here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="certifications in home.basicsList[0].certifications track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ certifications }} </h2>
                     </li>
                 </ul>
@@ -78,15 +78,15 @@
     <div>
         <h1>You can add your improved attributes below</h1>
         <form ng-submit="home.addBasicInfo('attributes', home.basicsList.attributes)">
-            <input class="form-control addbasics" ng-model="home.basicsList.attributes" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.attributes" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="attributes in home.basicsList[0].attributes track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ attributes }} </h2>
                     </li>
                 </ul>
@@ -94,17 +94,17 @@
         </div>
     </div>
     <div>
-        <h1>You can add your improved employment type below</h1>
+        <h1>You can add your employment type below</h1>
         <form ng-submit="home.addBasicInfo('employment', home.basicsList.employment)">
-            <input class="form-control addbasics" ng-model="home.basicsList.employment" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.employment" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="employment in home.basicsList[0].employment track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ employment}} </h2>
                     </li>
                 </ul>
@@ -112,17 +112,17 @@
         </div>
     </div>
     <div>
-        <h1>You can add your improved positioning statement below</h1>
+        <h1>You can add your positioning statement below</h1>
         <form ng-submit="home.addBasicInfo('statement', home.basicsList.statement)">
-            <input class="form-control addbasics" ng-model="home.basicsList.statement" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.statement" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="statement in home.basicsList[0].statement track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ statement }} </h2>
                     </li>
                 </ul>
@@ -132,15 +132,15 @@
     <div>
         <h1>You can add your professional objectives below</h1>
         <form ng-submit="home.addBasicInfo('objective', home.basicsList.objective)">
-            <input class="form-control addbasics" ng-model="home.basicsList.objective" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.objective" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="objectives in home.basicsList[0].objective track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ objectives }} </h2>
                     </li>
                 </ul>
@@ -150,15 +150,15 @@
     <div>
         <h1>You can add your target companies below</h1>
         <form ng-submit="home.addBasicInfo('targets', home.basicsList.targets)">
-            <input class="form-control addbasics" ng-model="home.basicsList.targets" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.targets" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="targets in home.basicsList[0].targets track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ targets }} </h2>
                     </li>
                 </ul>
@@ -168,15 +168,15 @@
     <div>
         <h1>You can add your important considerations below</h1>
         <form ng-submit="home.addBasicInfo('important', home.basicsList.important)">
-            <input class="form-control addbasics" ng-model="home.basicsList.important" placeholder="Add attributes here">
+            <input type='text' ng-model="home.basicsList.important" placeholder="Add attributes here">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
         <br>
         <div ng-repeat="important in home.basicsList[0].important track by $index">
-            <div class="list" id="list4">
+            <div id="list4">
                 <ul class='center'>
-                    <li>
+                    <li class="list">
                         <h2> {{ important }} </h2>
                     </li>
                 </ul>
