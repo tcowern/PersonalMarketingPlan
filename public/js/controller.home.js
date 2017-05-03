@@ -112,7 +112,7 @@ function homeController(basicsFactory, $http) {
     }
 
     home.getBasics = function () {
-        // console.log("Hit the GET function");
+         console.log("Hit the GET function");
         basicsFactory.getBasics()
             .then(function (returnData) {
                 //                 console.log("basics ",returnData.data);
