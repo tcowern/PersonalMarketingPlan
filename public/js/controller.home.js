@@ -113,7 +113,7 @@ function homeController(basicsFactory, $http) {
                 if (returnData.data !== undefined) {
 
                     home.competenciesList = returnData.data;
-                    console.log("home.competenciesList: ", returnData.data);
+                    console.log("home.competenciesList: ", home.competenciesList);
 
                 } else {
 
@@ -124,6 +124,18 @@ function homeController(basicsFactory, $http) {
 
     }
 
+    home.addCompDetails = function ($event, item, itemid) {
+//        console.log('Hit addCompDetails');
+//        var msg = home.competenciesList
+//        alert("I am an alert box!")
+
+//        $(document).on('click', '.myDiv', function () {
+//            var dataItem = angular.element(this).scope().item;
+            console.log($event.type, item, itemid);
+        
+//            alert(angular.toJson(dataItem));
+//        });
+    }
 
     angular.module('Basics')
         .run(function (editableOptions) {

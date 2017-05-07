@@ -9,6 +9,7 @@ function get(req, res) {
 //     get One
     
     if (req.params.id) {
+        console.log('Competencies req.params'. req.params);
         Competencies.findOne({
             userid: req.params.id
         }, (err, document) => {
@@ -28,8 +29,11 @@ function get(req, res) {
     }
     // get Many
     else {
+        console.log('Competencies else');
+        console.log('Competencies Userid', req.session.userId)
         Competencies.find({
             userid: req.session.userId
+            
         }, (err, document) => {
             // res.send(err || documents)
             if (err) {
@@ -39,6 +43,7 @@ function get(req, res) {
         });
     }
 }
+
 
 module.exports = {
     get: get,
