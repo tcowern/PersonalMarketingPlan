@@ -1,4 +1,4 @@
-angular.module('Basics', ["xeditable"])
+angular.module('Basics', ["ui.bootstrap"])
     .controller('homeController', homeController);
 
 
@@ -11,6 +11,7 @@ function homeController(basicsFactory, $http) {
     home.newBasicInfo = {}; //keep
     home.newCompetencies = {}; //keep
     home.competenciesList = []; //keep   
+    home.competencyDetails = {};
     home.basicsList = [];
     home.addbasics = {};
     home.BasicsItem = {};
@@ -124,17 +125,25 @@ function homeController(basicsFactory, $http) {
 
     }
 
-    home.addCompDetails = function ($event, item, itemid) {
-//        console.log('Hit addCompDetails');
-//        var msg = home.competenciesList
-//        alert("I am an alert box!")
+    home.addCompDetails = function ($event, item, itemid, compDetails) {
 
-//        $(document).on('click', '.myDiv', function () {
-//            var dataItem = angular.element(this).scope().item;
-            console.log($event.type, item, itemid);
+        home.competencyDetails.item = item;
+        home.competencyDetails.itemid = itemid;
+        home.competencyDetails.details = compDetails;
+
+
+
+        console.log("Add details: ", item, itemid, compDetails);
+
+
+
+    }
+
+
+    home.showStuff = function () {
+        const buttons = document.querySelectorAll("#showDet");
+        console.log(buttons[0].children);
         
-//            alert(angular.toJson(dataItem));
-//        });
     }
 
     angular.module('Basics')
